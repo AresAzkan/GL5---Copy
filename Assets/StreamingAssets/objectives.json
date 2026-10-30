@@ -1,0 +1,18 @@
+{
+  "objectives": [
+    { "id": 0, "description": "Check the message from Alex.", "targetCount": 1, "eventToListen": "Day1_Convo1_End", "eventOnComplete": "" },
+    { "id": 1, "description": "Go to school.", "targetCount": 1, "eventToListen": "Day1_GoToSchool", "eventOnComplete": "" },
+    { "id": 2, "nextObjectiveId": 100, "description": "Get your books and deal with Emma and Sophie.", "targetCount": 1, "eventToListen": "Day1_LockerEncounterEnd", "eventOnComplete": "" },
+    { "id": 100, "nextObjectiveId": 3, "description": "Go to class and sit at your desk.", "targetCount": 1, "eventToListen": "Day1_ClassFinished", "eventOnComplete": "" },
+    { "id": 3, "description": "Go home.", "targetCount": 1, "eventToListen": "Day1_ComebackHome", "eventOnComplete": "" },
+    { "id": 4, "description": "Reply to Alex after school.", "targetCount": 1, "eventToListen": "Day1_NightConvo_End", "eventOnComplete": "" },
+    { "id": 5, "description": "Go to sleep.", "targetCount": 1, "eventToListen": "Day1_End", "eventOnComplete": "" },
+    { "id": 6, "description": "Check Alex's morning message.", "targetCount": 1, "eventToListen": "Day2_Convo1_End", "eventOnComplete": "" },
+    { "id": 7, "description": "Go to school.", "targetCount": 1, "eventToListen": "Day1_GoToSchool", "eventOnComplete": "" },
+    { "id": 8, "nextObjectiveId": 101, "description": "Get past Emma and Sophie outside class.", "targetCount": 1, "eventToListen": "Day2_ClassroomEncounterEnd", "eventOnComplete": "" },
+    { "id": 101, "nextObjectiveId": 9, "description": "Go to class and sit at your desk.", "targetCount": 1, "eventToListen": "Day2_ClassFinished", "eventOnComplete": "" },
+    { "id": 9, "description": "Go home.", "targetCount": 1, "eventToListen": "Day1_ComebackHome", "eventOnComplete": "" },
+    { "id": 10, "description": "Talk to Alex about school and your privacy.", "targetCount": 1, "eventToListen": "Day2_Alex_End", "eventOnComplete": "" },
+    { "id": 11, "description": "Decide how to handle Noah's questions and request.", "targetCount": 1, "eventToListen": "Narrative2_Completed", "eventOnComplete": "" }
+  ]
+}

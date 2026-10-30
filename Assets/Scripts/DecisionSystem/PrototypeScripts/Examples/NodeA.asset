@@ -1,0 +1,118 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 37e7be4c0ec63cb439d47a66dc54ac52, type: 3}
+  m_Name: NodeA
+  m_EditorClassIdentifier: Assembly-CSharp::NarrativeNode
+  narrativeText: What should I do?
+  options:
+  - optionText: 'Confront '
+    nextNode: {fileID: 0}
+    messagesToSend:
+    - messageContent: I saved all your messages. Let's see what the principal says about this screenshots.
+      sender: 0
+      timestamp:
+        day: 10
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: You think you are so smart, don't u?
+      sender: 1
+      timestamp:
+        day: 10
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: Delete them rn or you'll regret it. Trust me.
+      sender: 1
+      timestamp:
+        day: 10
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: You're the one who should be worried now.
+      sender: 0
+      timestamp:
+        day: 10
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: "Fine. Just keep my name out of this and we\xB4re done"
+      sender: 1
+      timestamp:
+        day: 10
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+  - optionText: Ignore
+    nextNode: {fileID: 0}
+    messagesToSend:
+    - messageContent: 'I''m done listening to u. '
+      sender: 0
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: I'm reporting this number rn
+      sender: 0
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: Hold on, don't do that
+      sender: 1
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: 'It was just a prank, calm down '
+      sender: 1
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: "For me it wasn\xB4t, I'm blocking u"
+      sender: 0
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: 'U can''t just block me! '
+      sender: 1
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
+    - messageContent: Hello???
+      sender: 1
+      timestamp:
+        day: 0
+        month: 0
+        year: 0
+        hour: 0
+        minute: 0
