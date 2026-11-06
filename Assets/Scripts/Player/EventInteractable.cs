@@ -87,11 +87,29 @@ public class EventInteractable : IInteractable
                 if (!string.IsNullOrEmpty(ev)) EventBus.Instance.Subscribe(ev, DisableInteraction);
             }
         }
+
+        // Event unlocks are intentionally still supported, but they can be
+        // missed when an objective and a scene/interactable initialize in a
+        // different order. The objective is the authoritative fallback: if
+        // this object publishes the event currently required by the active
+        // objective, it must be usable.
+        if (ObjectivesManager.Instance != null)
+        {
+            ObjectivesManager.Instance.OnObjectiveUpdated += SyncWithCurrentObjective;
+            SyncWithCurrentObjective(
+                ObjectivesManager.Instance.GetCurrentObjective(),
+                ObjectivesManager.Instance.GetCurrentProgress());
+        }
     }
 
     private void OnDestroy()
     {
         SetOutlineActive(false);
+
+        if (ObjectivesManager.Instance != null)
+        {
+            ObjectivesManager.Instance.OnObjectiveUpdated -= SyncWithCurrentObjective;
+        }
 
         if (EventBus.Instance != null)
         {
@@ -113,6 +131,23 @@ public class EventInteractable : IInteractable
         }
     }
 
+    private void SyncWithCurrentObjective(Objective objective, int currentProgress)
+    {
+        if (objective == null || _eventsToPublish == null) return;
+
+        string requiredEvent = objective.EventToListen();
+        if (string.IsNullOrEmpty(requiredEvent)) return;
+
+        foreach (EventPayload payload in _eventsToPublish)
+        {
+            if (payload != null && payload.EventName() == requiredEvent)
+            {
+                EnableInteraction();
+                return;
+            }
+        }
+    }
+
     public void EnableInteraction() => _canInteract = true;
     public void DisableInteraction() => _canInteract = false;
 
@@ -123,10 +158,13 @@ public class EventInteractable : IInteractable
         {
             PublishEventList(_disabledEventsToPublish);
 
-            // Show Not Available message in dark red for 2 seconds
+            // Show the high-visibility unavailable message for 2 seconds.
             if (UIManager.Instance != null)
             {
-                UIManager.Instance.ShowTemporaryMessage(_notAvailableMessage, Color.darkRed, 2f);
+                UIManager.Instance.ShowTemporaryMessage(
+                    _notAvailableMessage,
+                    UIManager.UnavailableInteractionColor,
+                    2f);
             }
 
             if (_instantAction) Invoke(nameof(RevertPlayerState), 0.1f);

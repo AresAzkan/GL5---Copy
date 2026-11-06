@@ -13,6 +13,7 @@ using UnityEngine.UI;
 public enum PhoneApp
 {
     Messages,
+    Connect,
     Mail,
     Notes,
     Calendar,
@@ -26,9 +27,9 @@ public class NotificationData
     public string AppName;
     public string Message;
     public Sprite AppIcon;
-    public float Duration = 3.5f;
+    public float Duration = 5f;
 
-    public NotificationData(string appName, string message, Sprite appIcon = null, float duration = 3.5f)
+    public NotificationData(string appName, string message, Sprite appIcon = null, float duration = 5f)
     {
         AppName = appName;
         Message = message;
@@ -36,7 +37,7 @@ public class NotificationData
         Duration = duration;
     }
 
-    public NotificationData(PhoneApp app, string message, Sprite appIcon = null, float duration = 3.5f)
+    public NotificationData(PhoneApp app, string message, Sprite appIcon = null, float duration = 5f)
     {
         AppName = app.ToString();
         Message = message;
@@ -59,6 +60,12 @@ public class AppNotificationConfig
 /// </summary>
 public class PhoneNotificationController : MonoBehaviour
 {
+    private const float MinimumPanelHeight = 170f;
+    private const float MessageHorizontalPadding = 20f;
+    private const float MessageTopOffset = 92f;
+    private const float MessageMinimumHeight = 58f;
+    private const float MessageBottomPadding = 20f;
+
     private static PhoneNotificationController _instance;
     public static PhoneNotificationController Instance
     {
@@ -111,12 +118,12 @@ public class PhoneNotificationController : MonoBehaviour
     [SerializeField] private RectTransform _panelRect;
 
     [Header("Animation Settings")]
-    [SerializeField] private float _stayDuration = 2.0f;
+    [SerializeField] private float _stayDuration = 5f;
     [SerializeField] private float _slideDuration = 0.45f;
     [SerializeField] private float _slideDistance = 600f;
     [SerializeField] private Ease _slideInEase = Ease.OutCubic;
     [SerializeField] private Ease _slideOutEase = Ease.InCubic;
-    [SerializeField] private float _defaultDisplayDuration = 2.0f;
+    [SerializeField] private float _defaultDisplayDuration = 5f;
 
     [Header("Audio")]
     [SerializeField] private AudioSource _audioSource;
@@ -146,7 +153,41 @@ public class PhoneNotificationController : MonoBehaviour
             return;
         }
 
+        ConfigureScreenSpaceLayout();
         InitializeComponents();
+    }
+
+    private void ConfigureScreenSpaceLayout()
+    {
+        // This prefab used to be nested under a transformed HUD canvas, which
+        // made the banner inherit scene-space rotation and resolution-specific
+        // coordinates. Keep it as an independent, persistent screen overlay.
+        if (transform.parent != null)
+        {
+            transform.SetParent(null, false);
+        }
+
+        if (transform is RectTransform rootRect)
+        {
+            rootRect.anchorMin = Vector2.zero;
+            rootRect.anchorMax = Vector2.one;
+            rootRect.pivot = new Vector2(0.5f, 0.5f);
+            rootRect.anchoredPosition = Vector2.zero;
+            rootRect.sizeDelta = Vector2.zero;
+            rootRect.localScale = Vector3.one;
+            rootRect.localRotation = Quaternion.identity;
+        }
+
+        Canvas canvas = GetComponent<Canvas>();
+        if (canvas != null)
+        {
+            canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+            canvas.worldCamera = null;
+            canvas.overrideSorting = true;
+            canvas.sortingOrder = 50;
+        }
+
+        DontDestroyOnLoad(gameObject);
     }
 
     private void Start()
@@ -155,6 +196,7 @@ public class PhoneNotificationController : MonoBehaviour
         {
             EventBus.Instance.Subscribe<NotificationData>("ShowPhoneNotification", ShowNotification);
         }
+
     }
 
     private void OnEnable()
@@ -218,6 +260,8 @@ public class PhoneNotificationController : MonoBehaviour
             _bgImage = transform.Find("BG")?.GetComponent<Image>()
                     ?? transform.Find("NotificationPanel/BG")?.GetComponent<Image>();
 
+        BuildRuntimePopup();
+
         if (_canvasGroup == null)
         {
             _canvasGroup = GetComponent<CanvasGroup>();
@@ -246,12 +290,123 @@ public class PhoneNotificationController : MonoBehaviour
 
         if (_notificationMessageText != null)
         {
-            _notificationMessageText.overflowMode = TextOverflowModes.Ellipsis;
+            _notificationMessageText.overflowMode = TextOverflowModes.Overflow;
+            _notificationMessageText.textWrappingMode = TextWrappingModes.Normal;
+            _notificationMessageText.alignment = TextAlignmentOptions.TopLeft;
         }
 
         SetupPanelContainer();
 
         _isInitialized = true;
+    }
+
+    private void BuildRuntimePopup()
+    {
+        // The original notification objects come from several older scene
+        // layouts and do not share a reliable parent/anchor space. Rebuild the
+        // visible banner once at runtime so every visual is guaranteed to be a
+        // child of the same red panel.
+        TMP_Text legacyAppName = _appNameText;
+        TMP_Text legacyMessage = _notificationMessageText;
+        Image legacyLogo = _appLogoImage;
+        Image legacyBackground = _bgImage;
+        RectTransform legacyPanel = _panelRect;
+
+        Transform existingRuntime = transform.Find("RuntimeNotificationPanel");
+        if (existingRuntime != null)
+        {
+            _panelRect = existingRuntime as RectTransform;
+            _bgImage = existingRuntime.GetComponent<Image>();
+            _appLogoImage = existingRuntime.Find("AppLogo")?.GetComponent<Image>();
+            _appNameText = existingRuntime.Find("AppName")?.GetComponent<TMP_Text>();
+            _notificationMessageText = existingRuntime.Find("NotificationMessage")?.GetComponent<TMP_Text>();
+            return;
+        }
+
+        GameObject panelObject = new GameObject(
+            "RuntimeNotificationPanel",
+            typeof(RectTransform),
+            typeof(Image));
+        _panelRect = panelObject.GetComponent<RectTransform>();
+        _panelRect.SetParent(transform, false);
+        _bgImage = panelObject.GetComponent<Image>();
+        _bgImage.color = legacyBackground != null
+            ? legacyBackground.color
+            : new Color32(222, 127, 132, 255);
+        _bgImage.raycastTarget = false;
+
+        GameObject logoObject = new GameObject("AppLogo", typeof(RectTransform), typeof(Image));
+        logoObject.transform.SetParent(_panelRect, false);
+        _appLogoImage = logoObject.GetComponent<Image>();
+        _appLogoImage.sprite = legacyLogo != null ? legacyLogo.sprite : null;
+        _appLogoImage.color = Color.white;
+        _appLogoImage.preserveAspect = true;
+        _appLogoImage.raycastTarget = false;
+
+        GameObject appNameObject = new GameObject("AppName", typeof(RectTransform), typeof(TextMeshProUGUI));
+        appNameObject.transform.SetParent(_panelRect, false);
+        _appNameText = appNameObject.GetComponent<TextMeshProUGUI>();
+        CopyTextStyle(legacyAppName, _appNameText, 26f);
+        _appNameText.alignment = TextAlignmentOptions.MidlineLeft;
+
+        GameObject messageObject = new GameObject(
+            "NotificationMessage",
+            typeof(RectTransform),
+            typeof(TextMeshProUGUI));
+        messageObject.transform.SetParent(_panelRect, false);
+        _notificationMessageText = messageObject.GetComponent<TextMeshProUGUI>();
+        CopyTextStyle(legacyMessage, _notificationMessageText, 25f);
+        _notificationMessageText.alignment = TextAlignmentOptions.TopLeft;
+        _notificationMessageText.textWrappingMode = TextWrappingModes.Normal;
+        _notificationMessageText.overflowMode = TextOverflowModes.Overflow;
+
+        // Hide every part of the old visual hierarchy. The controller itself,
+        // its CanvasGroup, event subscriptions and audio remain untouched.
+        if (legacyPanel != null && legacyPanel != transform && legacyPanel != _panelRect)
+        {
+            legacyPanel.gameObject.SetActive(false);
+        }
+        DisableLegacyVisual(legacyAppName, panelObject);
+        DisableLegacyVisual(legacyMessage, panelObject);
+        DisableLegacyVisual(legacyLogo, panelObject);
+        DisableLegacyVisual(legacyBackground, panelObject);
+    }
+
+    private static void CopyTextStyle(TMP_Text source, TMP_Text target, float fallbackFontSize)
+    {
+        if (target == null) return;
+
+        target.font = source != null && source.font != null
+            ? source.font
+            : TMP_Settings.defaultFontAsset;
+        if (source != null && source.fontSharedMaterial != null)
+        {
+            target.fontSharedMaterial = source.fontSharedMaterial;
+        }
+        target.fontSize = source != null && source.fontSize > 0f
+            ? source.fontSize
+            : fallbackFontSize;
+        target.fontStyle = source != null ? source.fontStyle : FontStyles.Normal;
+        target.color = source != null ? source.color : Color.white;
+        target.enableAutoSizing = false;
+        target.richText = true;
+        target.raycastTarget = false;
+    }
+
+    private static void DisableLegacyVisual(Component component, GameObject runtimePanel)
+    {
+        if (component == null || component.gameObject == runtimePanel) return;
+        if (component.transform.IsChildOf(runtimePanel.transform)) return;
+
+        // Some legacy Graphics live directly on the persistent Canvas object.
+        // Disable only that visual component so the Canvas/controller survives.
+        if (component is Behaviour behaviour)
+        {
+            behaviour.enabled = false;
+            return;
+        }
+
+        component.gameObject.SetActive(false);
     }
 
     private void SetupPanelContainer()
@@ -287,10 +442,12 @@ public class PhoneNotificationController : MonoBehaviour
                 }
                 foreach (var child in children)
                 {
-                    child.SetParent(_panelRect, true);
+                    child.SetParent(_panelRect, false);
                 }
             }
         }
+
+        ConfigurePanelLayout();
 
         _onScreenPosition = _panelRect.anchoredPosition;
         _offScreenPosition = _onScreenPosition + new Vector2(_slideDistance, 0f);
@@ -300,6 +457,58 @@ public class PhoneNotificationController : MonoBehaviour
         _canvasGroup.alpha = 0f;
         _canvasGroup.blocksRaycasts = false;
         _canvasGroup.interactable = false;
+    }
+
+    private void ConfigurePanelLayout()
+    {
+        if (_panelRect == null) return;
+
+        // Pin the complete banner to the upper-right corner of the reference
+        // resolution. CanvasScaler then keeps that relationship on every
+        // monitor and aspect ratio.
+        _panelRect.anchorMin = Vector2.one;
+        _panelRect.anchorMax = Vector2.one;
+        _panelRect.pivot = Vector2.one;
+        _panelRect.anchoredPosition = new Vector2(-40f, -40f);
+        _panelRect.sizeDelta = new Vector2(440f, 170f);
+        _panelRect.localScale = Vector3.one;
+        _panelRect.localRotation = Quaternion.identity;
+
+        // Legacy banners used a separate BG child. The rebuilt banner puts the
+        // Image directly on the panel, so never stretch that RectTransform or
+        // it would turn the whole panel into a fullscreen overlay.
+        if (_bgImage != null && _bgImage.rectTransform != _panelRect)
+        {
+            ConfigureRect(_bgImage.rectTransform,
+                Vector2.zero, Vector2.one, new Vector2(0.5f, 0.5f), Vector2.zero, Vector2.zero);
+        }
+        ConfigureRect(_appLogoImage != null ? _appLogoImage.rectTransform : null,
+            Vector2.up, Vector2.up, Vector2.up, new Vector2(20f, -20f), new Vector2(64f, 64f));
+        ConfigureRect(_appNameText != null ? _appNameText.rectTransform : null,
+            Vector2.up, Vector2.up, Vector2.up, new Vector2(100f, -18f), new Vector2(315f, 52f));
+        ConfigureRect(_notificationMessageText != null ? _notificationMessageText.rectTransform : null,
+            Vector2.up, Vector2.up, Vector2.up,
+            new Vector2(MessageHorizontalPadding, -MessageTopOffset),
+            new Vector2(440f - (MessageHorizontalPadding * 2f), MessageMinimumHeight));
+    }
+
+    private static void ConfigureRect(
+        RectTransform rect,
+        Vector2 anchorMin,
+        Vector2 anchorMax,
+        Vector2 pivot,
+        Vector2 anchoredPosition,
+        Vector2 sizeDelta)
+    {
+        if (rect == null) return;
+
+        rect.anchorMin = anchorMin;
+        rect.anchorMax = anchorMax;
+        rect.pivot = pivot;
+        rect.anchoredPosition = anchoredPosition;
+        rect.sizeDelta = sizeDelta;
+        rect.localScale = Vector3.one;
+        rect.localRotation = Quaternion.identity;
     }
 
     #region Public API
@@ -362,11 +571,10 @@ public class PhoneNotificationController : MonoBehaviour
             }
         }
 
-        // 3. Set Notification Message: write only the portion that fits within bounds
+        // 3. Set the complete message and grow the banner downward to fit it.
         if (_notificationMessageText != null)
         {
-            string fittingText = TruncateMessageToFit(_notificationMessageText, data.Message);
-            _notificationMessageText.text = fittingText;
+            SetNotificationMessageAndResize(data.Message);
         }
 
         // 4. Play audio (if assigned)
@@ -406,6 +614,55 @@ public class PhoneNotificationController : MonoBehaviour
         // 9. Fully hidden
         _canvasGroup.alpha = 0f;
         _canvasGroup.blocksRaycasts = false;
+    }
+
+    private void SetNotificationMessageAndResize(string rawMessage)
+    {
+        if (_notificationMessageText == null || _panelRect == null) return;
+
+        string cleanMessage = string.IsNullOrWhiteSpace(rawMessage)
+            ? string.Empty
+            : rawMessage.Replace("\r\n", " ").Replace("\n", " ").Trim();
+
+        _notificationMessageText.overflowMode = TextOverflowModes.Overflow;
+        _notificationMessageText.textWrappingMode = TextWrappingModes.Normal;
+        _notificationMessageText.alignment = TextAlignmentOptions.TopLeft;
+        _notificationMessageText.text = cleanMessage;
+
+        RectTransform messageRect = _notificationMessageText.rectTransform;
+
+        // The notification elements can originate from older scene hierarchies.
+        // Always make the message a child of the red panel and rebuild its bounds
+        // so text cannot drift outside the banner at different resolutions.
+        if (messageRect.parent != _panelRect)
+        {
+            messageRect.SetParent(_panelRect, false);
+        }
+
+        float messageWidth = Mathf.Max(
+            1f,
+            _panelRect.rect.width - (MessageHorizontalPadding * 2f));
+        ConfigureRect(
+            messageRect,
+            Vector2.up,
+            Vector2.up,
+            Vector2.up,
+            new Vector2(MessageHorizontalPadding, -MessageTopOffset),
+            new Vector2(messageWidth, MessageMinimumHeight));
+
+        Canvas.ForceUpdateCanvases();
+        _notificationMessageText.ForceMeshUpdate();
+
+        float preferredHeight = Mathf.Ceil(
+            _notificationMessageText.GetPreferredValues(cleanMessage, messageWidth, 0f).y);
+        float messageHeight = Mathf.Max(MessageMinimumHeight, preferredHeight);
+
+        messageRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, messageHeight);
+
+        float panelHeight = Mathf.Max(
+            MinimumPanelHeight,
+            MessageTopOffset + messageHeight + MessageBottomPadding);
+        _panelRect.SetSizeWithCurrentAnchors(RectTransform.Axis.Vertical, panelHeight);
     }
 
     /// <summary>
@@ -448,7 +705,7 @@ public class PhoneNotificationController : MonoBehaviour
     {
         if (_audioSource != null && _notificationSound != null)
         {
-            _audioSource.PlayOneShot(_notificationSound);
+            _audioSource.PlayOneShot(_notificationSound, GameManager.GetSavedSfxVolume());
         }
     }
 

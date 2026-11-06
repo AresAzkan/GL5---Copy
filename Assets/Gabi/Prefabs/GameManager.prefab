@@ -44,3 +44,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 63a46e515e580f4429479523f0b49960, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::GameManager
+  _playerName: Luna
+  _backgroundMusic: {fileID: 8300000, guid: 06ae2341f5bd4954c96476bdaee393e7, type: 3}
+  _defaultMusicVolume: 0.35
+  _musicScenes:
+  - Home
+  - School
+  - Map
+  _musicFadeDuration: 0.75

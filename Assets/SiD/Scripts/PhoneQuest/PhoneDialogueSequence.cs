@@ -61,7 +61,7 @@ public class PhoneDialogueSequence : MonoBehaviour
                 // Play typing/message sound
                 if (audioSource != null && typingSound != null)
                 {
-                    audioSource.PlayOneShot(typingSound);
+                    audioSource.PlayOneShot(typingSound, GameManager.GetSavedSfxVolume());
                 }
             }
         }

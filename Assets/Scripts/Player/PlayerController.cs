@@ -1,3 +1,4 @@
+using System.Collections;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -165,6 +166,66 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public IEnumerator FocusViewOn(Vector3 worldTarget, float duration)
+    {
+        if (_playerCamera == null) yield break;
+
+        Vector3 flatDirection = worldTarget - transform.position;
+        flatDirection.y = 0f;
+
+        Quaternion startBodyRotation = _rigidbody != null ? _rigidbody.rotation : transform.rotation;
+        Quaternion targetBodyRotation = flatDirection.sqrMagnitude > 0.0001f
+            ? Quaternion.LookRotation(flatDirection.normalized, Vector3.up)
+            : startBodyRotation;
+
+        Vector3 cameraToTarget = worldTarget - _playerCamera.transform.position;
+        float horizontalDistance = new Vector2(cameraToTarget.x, cameraToTarget.z).magnitude;
+        float targetPitch = -Mathf.Atan2(cameraToTarget.y, Mathf.Max(0.001f, horizontalDistance)) * Mathf.Rad2Deg;
+        targetPitch = Mathf.Clamp(targetPitch, -_verticalClamp, _verticalClamp);
+        float startPitch = _currentXRotation;
+
+        if (_rigidbody != null)
+        {
+            _rigidbody.angularVelocity = Vector3.zero;
+        }
+
+        if (duration <= 0f)
+        {
+            ApplyViewRotation(targetBodyRotation, targetPitch);
+            yield break;
+        }
+
+        float elapsed = 0f;
+        while (elapsed < duration)
+        {
+            elapsed += Time.unscaledDeltaTime;
+            float progress = Mathf.Clamp01(elapsed / duration);
+            float easedProgress = Mathf.SmoothStep(0f, 1f, progress);
+
+            Quaternion bodyRotation = Quaternion.Slerp(startBodyRotation, targetBodyRotation, easedProgress);
+            float cameraPitch = Mathf.Lerp(startPitch, targetPitch, easedProgress);
+            ApplyViewRotation(bodyRotation, cameraPitch);
+            yield return null;
+        }
+
+        ApplyViewRotation(targetBodyRotation, targetPitch);
+    }
+
+    private void ApplyViewRotation(Quaternion bodyRotation, float cameraPitch)
+    {
+        if (_rigidbody != null)
+        {
+            _rigidbody.rotation = bodyRotation;
+        }
+        else
+        {
+            transform.rotation = bodyRotation;
+        }
+
+        _currentXRotation = cameraPitch;
+        _playerCamera.transform.localRotation = Quaternion.Euler(_currentXRotation, 0f, 0f);
+    }
+
     private void CheckInteractableHover()
     {
         // Don't detect or highlight interactables when the player is not in Idle state (phone, conversation, interacting, etc.)
@@ -194,7 +255,9 @@ public class PlayerController : MonoBehaviour
                 if (UIManager.Instance != null)
                 {
                     string messageToShow = (interactable.CanInteract()) ? interactable.InteractionMessage() : interactable.NotAvailableMessage();
-                    Color messageColor = (interactable.CanInteract()) ? Color.white : Color.darkRed;
+                    Color messageColor = interactable.CanInteract()
+                        ? Color.white
+                        : UIManager.UnavailableInteractionColor;
                     UIManager.Instance.ShowMessage(messageToShow, messageColor);
                 }
             }

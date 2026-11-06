@@ -5,6 +5,9 @@ public class NPCData : IInteractable
     [SerializeField]
     private string _characterName; // Name of the character (this need to be exactly the same as stated in the JSON)
 
+    [Tooltip("Optional ambient line shown without entering the story conversation system.")]
+    [SerializeField, TextArea] private string _standaloneDialogue;
+
     [Header("Conditions")]
 
     [Tooltip("Optional: Events that enable this NPC (e.g. Day1_LockerEncounterEnd).")]
@@ -76,7 +79,42 @@ public class NPCData : IInteractable
 
         Debug.Log("[NPC]: Interacted");
 
+        if (!string.IsNullOrWhiteSpace(_standaloneDialogue))
+        {
+            // Ambient NPCs must not replace the current narrative contact.
+            // Moving through NONE ensures the normal world input is restored
+            // when the standalone line closes.
+            UIManager.Instance.ChangeState((int)UIState.NONE);
+
+            bool opened = DialogueManager.Instance != null &&
+                          DialogueManager.Instance.ShowStandaloneLine(
+                              _characterName,
+                              _standaloneDialogue,
+                              EndStandaloneInteraction);
+
+            if (!opened)
+            {
+                EndStandaloneInteraction();
+            }
+
+            return;
+        }
+
         MessagesManager.Instance.SetCurrentContact(_characterName);
         UIManager.Instance.ChangeState(4);
+    }
+
+    private void EndStandaloneInteraction()
+    {
+        if (UIManager.Instance != null)
+        {
+            UIManager.Instance.ChangeState((int)UIState.DEFAULT);
+        }
+
+        PlayerStateMachine playerState = FindAnyObjectByType<PlayerStateMachine>();
+        if (playerState != null)
+        {
+            playerState.ChangeState(PlayerState.Idle);
+        }
     }
 }

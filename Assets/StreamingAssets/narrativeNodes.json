@@ -1,348 +1,469 @@
 {
   "narrativeNodes": [
-    {
-      "_id": 0, "_nextNode": -1, "_options": [
-        { "text": "Friendly: Hi! How are you?", "nextNode": 1, "messagesToSend": [{ "_content": "Hi! How are you?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Alex_Friendly" },
-        { "text": "Curious: Hi, do I know you?", "nextNode": 2, "messagesToSend": [{ "_content": "Hi, do I know you?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Alex_Curious" },
-        { "text": "Cautious: Who is this?", "nextNode": 3, "messagesToSend": [{ "_content": "Who is this?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Alex_Cautious" }
-      ], "_dialogues": [{ "_content": "Hi.", "_sender": 1, "_speakerName": "Alex" }], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 1, "_nextNode": 4, "_options": [], "_dialogues": [
-        { "_content": "Good, now that you replied ;)", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Luna laughs at the message and keeps chatting.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 2, "_nextNode": 4, "_options": [], "_dialogues": [
-        { "_content": "Not yet haha. I saw you on that forum about Lost Cause.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Luna is surprised that someone noticed her post.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 3, "_nextNode": 4, "_options": [], "_dialogues": [
-        { "_content": "Fair question haha. I saw your post about Lost Cause and thought you seemed interesting.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "The shared interest makes the account seem less random.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 4, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Wait. Don't tell me you actually liked that ending?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "EXCUSE ME?? It was PERFECT.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "The main character ignored EVERY warning sign.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "THAT'S WHAT MADE IT SOOO GOOD.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Okay, you're actually funny.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "I have to go, I'm gonna be late for class.", "_sender": 0, "_speakerName": "Luna" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day1_Convo1_End"
-    },
-    {
-      "_id": 10, "_nextNode": 14, "_options": [], "_dialogues": [
-        { "_content": "Oh, look who finally decided to show up.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "Did you see what she posted yesterday? What a loser.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "Imagine actually being that embarrassing.", "_sender": 1, "_speakerName": "Emma" }
-      ], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 14, "_nextNode": -1, "_options": [
-        { "text": "Set a boundary: Could you move, please?", "nextNode": 11, "messagesToSend": [], "eventToPublish": "Choice_D1_Bullies_Boundary" },
-        { "text": "Avoid the argument and get the books.", "nextNode": 12, "messagesToSend": [], "eventToPublish": "Choice_D1_Bullies_Avoid" },
-        { "text": "Respond sharply.", "nextNode": 13, "messagesToSend": [], "eventToPublish": "Choice_D1_Bullies_Sharp" }
-      ], "_dialogues": [], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 11, "_nextNode": 50, "_options": [], "_dialogues": [
-        { "_content": "Could you move, please?", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Last time I checked, book nerds don't talk. Move yourself, nerd.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "Luna gets her books and leaves.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day1_LockerEncounterEnd"
-    },
-    {
-      "_id": 12, "_nextNode": 55, "_options": [], "_dialogues": [
-        { "_content": "Luna keeps her eyes down and reaches for her books.", "_sender": 1, "_speakerName": "Narration" },
-        { "_content": "Awww, nothing to say today?", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "Luna leaves without answering, but the comments follow her down the hall.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day1_LockerEncounterEnd"
-    },
-    {
-      "_id": 13, "_nextNode": 56, "_options": [], "_dialogues": [
-        { "_content": "At least I don't spend all day obsessing over other people.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Wow. Someone's got an attitude.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "Sophie laughs, and Luna leaves before the argument gets worse.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day1_LockerEncounterEnd"
-    },
-    {
-      "_id": 20, "_nextNode": -1, "_options": [
-        { "text": "Keep it private.", "nextNode": 21, "messagesToSend": [{ "_content": "Rough day. I don't really want to talk about it.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Sharing_Private" },
-        { "text": "Share a little.", "nextNode": 22, "messagesToSend": [{ "_content": "Some girls at school keep picking on me.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Sharing_Little" },
-        { "text": "Tell the whole story.", "nextNode": 23, "messagesToSend": [{ "_content": "Emma and Sophie keep humiliating me. I feel completely alone.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D1_Sharing_All" }
-      ], "_dialogues": [
-        { "_content": "Today was a looooong day.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "You don't say.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "What's up? Anything you want to talk about?", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 21, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "That's okay. What's your favourite book?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Lost Cause, obviously. We can talk about that instead.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "At least we have each other. You can always reach out to me.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Thanks. I'm gonna go to bed now. Seeya.", "_sender": 0, "_speakerName": "Luna" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day1_NightConvo_End"
-    },
-    {
-      "_id": 22, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Wait, what? What do they do?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "They make fun of me. I can't even walk into class without them saying something.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Have you told anyone?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Not really. It's not like anyone would care.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Hey, don't say that. I'm here for you. You can always reach out to me.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Thanks. I'm gonna go to bed now. Seeya.", "_sender": 0, "_speakerName": "Luna" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day1_NightConvo_End"
-    },
-    {
-      "_id": 23, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "That's horrible. You shouldn't have to deal with that.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "I don't tell anyone this stuff.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Then I'm glad you told me. You can tell me anything.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "At least we have each other. You can always reach out to me.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Thanks. I'm gonna go to bed now. Seeya.", "_sender": 0, "_speakerName": "Luna" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day1_NightConvo_End"
-    },
-    {
-      "_id": 30, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Hey, do you know who runs the Lost Cause fan page?", "_sender": 1, "_speakerName": "Noah" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 40, "_nextNode": -1, "_options": [
-        { "text": "Play along.", "nextNode": 41, "messagesToSend": [{ "_content": "HAHAHA thanks, I guess.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Routine_PlayAlong" },
-        { "text": "Ask how Alex knows.", "nextNode": 42, "messagesToSend": [{ "_content": "How do you always know when I'm awake?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Routine_Question" },
-        { "text": "Pull back and leave it unanswered.", "nextNode": 43, "messagesToSend": [{ "_content": "[Luna leaves the message unanswered.]", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Routine_PullBack" }
-      ], "_dialogues": [
-        { "_content": "GOOOOOD MORNING.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "It's wayyyy too early for this HAHAHA.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Someone's grumpy today -.-", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "I literally just woke up...", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Have fun at school, nerd.", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 41, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Anytime, sleepyhead. Now go before you're late again.", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Convo1_End"
-    },
-    {
-      "_id": 42, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Lucky guess HAHAHA. You said you had school yesterday.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "The explanation sounds possible, but the question remains unanswered.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Convo1_End"
-    },
-    {
-      "_id": 43, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Helloooo? Ignoring me already? :(", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Luna feels guilty, even though she has done nothing wrong.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Convo1_End"
-    },
-    {
-      "_id": 50, "_nextNode": 51, "_options": [], "_dialogues": [
-        { "_content": "Oh look, it's our favourite little bookworm.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "She asked so nicely yesterday. Think she'll try it again?", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "I wonder if she even has any friends.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "What's the rush? Don't wanna talk to us?", "_sender": 1, "_speakerName": "Emma" }
-      ], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 55, "_nextNode": 51, "_options": [], "_dialogues": [
-        { "_content": "Oh look, it's our favourite little bookworm.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "Nothing to say again? That worked so well yesterday.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "I wonder if she even has any friends.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "What's the rush? Don't wanna talk to us?", "_sender": 1, "_speakerName": "Emma" }
-      ], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 56, "_nextNode": 51, "_options": [], "_dialogues": [
-        { "_content": "Here she comes. Still feeling brave after yesterday?", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "That comeback was so embarrassing.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "I wonder if she even has any friends.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "What's the rush? Don't wanna talk to us?", "_sender": 1, "_speakerName": "Emma" }
-      ], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 51, "_nextNode": -1, "_options": [
-        { "text": "Set a boundary: Leave me alone.", "nextNode": 52, "messagesToSend": [], "eventToPublish": "Choice_D2_Bullies_Boundary" },
-        { "text": "Walk away and try to reach class.", "nextNode": 53, "messagesToSend": [], "eventToPublish": "Choice_D2_Bullies_WalkAway" },
-        { "text": "Call attention to what they are doing.", "nextNode": 54, "messagesToSend": [], "eventToPublish": "Choice_D2_Bullies_CallOut" }
-      ], "_dialogues": [], "_isEndNode": false, "_dialogueType": 0, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 52, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Can you just leave me alone? I haven't done anything to you.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Awww, is someone getting upset?", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "HAHAHA, she's gonna cry.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "Luna walks past them and enters the classroom.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day2_ClassroomEncounterEnd"
-    },
-    {
-      "_id": 53, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Luna ignores Emma and tries to pass.", "_sender": 1, "_speakerName": "Narration" },
-        { "_content": "Helloooo? I'm talking to you.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "Sophie pushes Luna. Her books fall to the floor.", "_sender": 1, "_speakerName": "Narration" },
-        { "_content": "Awwww, did you trip? I'm SO sorry.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "Luna gathers her books and enters the classroom.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day2_ClassroomEncounterEnd"
-    },
-    {
-      "_id": 54, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Why are you always doing this when people can hear you?", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "A couple of students look over.", "_sender": 1, "_speakerName": "Narration" },
-        { "_content": "We're literally just talking to her.", "_sender": 1, "_speakerName": "Emma" },
-        { "_content": "She's making it a whole thing.", "_sender": 1, "_speakerName": "Sophie" },
-        { "_content": "Luna reaches class, aware that the other students are watching.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Day2_ClassroomEncounterEnd"
-    },
-    {
-      "_id": 70, "_nextNode": -1, "_options": [
-        { "text": "Open up about what happened.", "nextNode": 71, "messagesToSend": [{ "_content": "Emma and Sophie cornered me again. It was awful.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Alex_OpenUp" },
-        { "text": "Keep it vague.", "nextNode": 72, "messagesToSend": [{ "_content": "Same stuff as always.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Alex_Vague" },
-        { "text": "Question how much Alex remembers.", "nextNode": 73, "messagesToSend": [{ "_content": "How do you remember all this about me?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Alex_Question" }
-      ], "_dialogues": [
-        { "_content": "GUESS WHOOO.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Oh god, not you again.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "WOW okay rude.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "HAHAHA I'm kidding.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Anyways, how was school?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Horrible as usual.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Those girls again?", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 71, "_nextNode": 74, "_options": [], "_dialogues": [
-        { "_content": "You deserve better than that. I'm glad you told me.", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 72, "_nextNode": 74, "_options": [], "_dialogues": [
-        { "_content": "Then let's talk about books instead. You need a break from them.", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 73, "_nextNode": 74, "_options": [], "_dialogues": [
-        { "_content": "Because I listen to you? Is that a bad thing?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "The reply makes Luna feel guilty for asking, but the question does not go away.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 74, "_nextNode": -1, "_options": [
-        { "text": "Share it: Rainfall School.", "nextNode": 75, "messagesToSend": [{ "_content": "Rainfall School. What about you?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_School_Shared" },
-        { "text": "Set a boundary: I'd rather not say.", "nextNode": 76, "messagesToSend": [{ "_content": "I'd rather not say yet.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_School_Private" },
-        { "text": "Give a vague answer.", "nextNode": 77, "messagesToSend": [{ "_content": "One around here. Why?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_School_Vague" }
-      ], "_dialogues": [
-        { "_content": "Can I ask you something?", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Sure?", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "What school do you go to? Maybe we live close to each other HAHAHA.", "_sender": 1, "_speakerName": "Alex" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 75, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "WAIT REALLY???", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "WHAT HAHAHA.", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "I think I know someone who goes there.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "NO WAY WHO?", "_sender": 0, "_speakerName": "Luna" },
-        { "_content": "Can't remember their name rn HAHAHA.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Alex now knows which school Luna attends.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Alex_End"
-    },
-    {
-      "_id": 76, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Ohhh okay, that's fair. Sorry if that was weird.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Luna keeps her school's name private.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Alex_End"
-    },
-    {
-      "_id": 77, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Just curious, maybe we live close to each other.", "_sender": 1, "_speakerName": "Alex" },
-        { "_content": "Alex does not have the school's name, but keeps asking about the area.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Day2_Alex_End"
-    },
-    {
-      "_id": 90, "_nextNode": -1, "_options": [
-        { "text": "Ignore the age question.", "nextNode": 91, "messagesToSend": [{ "_content": "What kind of things do you do for fun?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Age_Ignored" },
-        { "text": "Question him: Why do you want to know?", "nextNode": 92, "messagesToSend": [{ "_content": "Why do you want to know?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Age_Questioned" },
-        { "text": "Share Luna's age.", "nextNode": 93, "messagesToSend": [{ "_content": "I'm fifteen. How old are you?", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Age_Shared" }
-      ], "_dialogues": [
-        { "_content": "How old are you, by the way?", "_sender": 1, "_speakerName": "Noah" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 91, "_nextNode": 94, "_options": [], "_dialogues": [
-        { "_content": "Mostly games, music, normal stuff. You dodged my question though haha.", "_sender": 1, "_speakerName": "Noah" },
-        { "_content": "Noah lets the subject change for now.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 92, "_nextNode": 94, "_options": [], "_dialogues": [
-        { "_content": "Just curious. We're talking, aren't we?", "_sender": 1, "_speakerName": "Noah" },
-        { "_content": "Luna keeps chatting about hobbies without answering.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 93, "_nextNode": 94, "_options": [], "_dialogues": [
-        { "_content": "Cool, we're around the same age.", "_sender": 1, "_speakerName": "Noah" },
-        { "_content": "Noah never answers Luna's question about his own age.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 94, "_nextNode": -1, "_options": [
-        { "text": "Block and report Noah.", "nextNode": 95, "messagesToSend": [{ "_content": "I'm not comfortable with that.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Photo_Blocked" },
-        { "text": "Send a normal selfie.", "nextNode": 96, "messagesToSend": [{ "_content": "[Luna sends a normal selfie.]", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Photo_Normal" },
-        { "text": "Send a flirty selfie.", "nextNode": 97, "messagesToSend": [{ "_content": "[Luna sends a flirty selfie.]", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Photo_Flirty" }
-      ], "_dialogues": [
-        { "_content": "Send me a picture? I'll send one too.", "_sender": 1, "_speakerName": "Noah" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 95, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Luna blocks and reports Noah. He receives no picture.", "_sender": 1, "_speakerName": "System" },
-        { "_content": "She saves the conversation and considers telling someone she trusts.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Narrative2_Completed"
-    },
-    {
-      "_id": 96, "_nextNode": 98, "_options": [], "_dialogues": [
-        { "_content": "You look nice.", "_sender": 1, "_speakerName": "Noah" },
-        { "_content": "Noah stops responding and never sends a picture back.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 97, "_nextNode": 98, "_options": [], "_dialogues": [
-        { "_content": "Wow... you look really good.", "_sender": 1, "_speakerName": "Noah" },
-        { "_content": "Noah stops responding and never sends a picture back.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": ""
-    },
-    {
-      "_id": 98, "_nextNode": -1, "_options": [
-        { "text": "Save evidence, report the post, and block Noah.", "nextNode": 99, "messagesToSend": [{ "_content": "[Luna reports the post and blocks Noah.]", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Post_Reported" },
-        { "text": "Ignore it and hope it disappears.", "nextNode": 100, "messagesToSend": [{ "_content": "[Luna closes the app.]", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice_D2_Post_Ignored" }
-      ], "_dialogues": [
-        { "_content": "New post: Luna's picture has been shared publicly without her consent.", "_sender": 1, "_speakerName": "Social Feed" },
-        { "_content": "Luna does not know who has already seen it.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": false, "_dialogueType": 1, "_hasOptions": true, "_eventOnEnd": ""
-    },
-    {
-      "_id": 99, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "The evidence is saved. The post is reported, and Noah is blocked.", "_sender": 1, "_speakerName": "System" },
-        { "_content": "Luna considers telling someone she trusts so she does not have to face this alone.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Narrative2_Completed"
-    },
-    {
-      "_id": 100, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Luna hopes the post will disappear, but it remains online.", "_sender": 1, "_speakerName": "Narration" },
-        { "_content": "The uncertainty of who has seen it follows her into the next day.", "_sender": 1, "_speakerName": "Narration" }
-      ], "_isEndNode": true, "_dialogueType": 1, "_hasOptions": false, "_eventOnEnd": "Narrative2_Completed"
-    },
-    {
-      "_id": 200, "_nextNode": -1, "_options": [], "_dialogues": [
-        { "_content": "Sorry, I can't talk right now.", "_sender": 1, "_speakerName": "Bob" }
-      ], "_isEndNode": true, "_dialogueType": 0, "_hasOptions": false, "_eventOnEnd": "Bob_Convo_Ended"
-    }
+    { "_id": 1000, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Welcome to Connect. Create your profile to continue.", "_sender": 1, "_speakerName": "Connect" }
+    ], "_options": [
+      { "text": "Safe: Use a username and avatar only.", "nextNode": 1001, "messagesToSend": [], "eventToPublish": "Choice1_Safe" },
+      { "text": "Neutral: Add a first name and selfie.", "nextNode": 1002, "messagesToSend": [], "eventToPublish": "Choice1_Neutral" },
+      { "text": "Risky: Add full name, school and photo.", "nextNode": 1003, "messagesToSend": [], "eventToPublish": "Choice1_Risky" }
+    ] },
+    { "_id": 1001, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_Profile_End", "_options": [], "_dialogues": [
+      { "_content": "Profile created with a username and avatar. No identifying details are public.", "_sender": 1, "_speakerName": "Connect" }
+    ] },
+    { "_id": 1002, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_Profile_End", "_options": [], "_dialogues": [
+      { "_content": "Profile created with Luna's first name and a personal picture.", "_sender": 1, "_speakerName": "Connect" }
+    ] },
+    { "_id": 1003, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_Profile_End", "_options": [], "_dialogues": [
+      { "_content": "Profile created. Luna's full name, school and personal picture are public.", "_sender": 1, "_speakerName": "Connect" }
+    ] },
+
+    { "_id": 1010, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Hey! Saw your comment about Lost Cause.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Finally someone who understands how good that book is.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "The ending was actually insane.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "You know, you're actually really fun to talk to. Tell me about yourself?", "_sender": 1, "_speakerName": "Alex" }
+    ], "_options": [
+      { "text": "Safe: Keep the conversation about books.", "nextNode": 1011, "messagesToSend": [{ "_content": "I'd rather just talk about the books for now.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Safe" },
+      { "text": "Neutral: Share hobbies and interests.", "nextNode": 1012, "messagesToSend": [{ "_content": "I'm pretty much just a book nerd haha.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Neutral" },
+      { "text": "Risky: Share school, routine and location.", "nextNode": 1013, "messagesToSend": [{ "_content": "I go to Rainfall School and live nearby. I walk there every day.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Risky" }
+    ] },
+    { "_id": 1011, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_AlexIntro_End", "_options": [], "_dialogues": [
+      { "_content": "Fair enough. Lost Cause theories it is.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "We should definitely talk more.", "_sender": 1, "_speakerName": "Alex" }
+    ] },
+    { "_id": 1012, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_AlexIntro_End", "_options": [], "_dialogues": [
+      { "_content": "Same. Books, games and music are basically my entire personality.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "We should definitely talk more.", "_sender": 1, "_speakerName": "Alex" }
+    ] },
+    { "_id": 1013, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_AlexIntro_End", "_options": [], "_dialogues": [
+      { "_content": "Rainfall School? Maybe we live close to each other haha.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "We should definitely talk more.", "_sender": 1, "_speakerName": "Alex" }
+    ] },
+
+    { "_id": 1100, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Well, look who finally showed up.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Did you seriously wear that on the first day?", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "Good morning to you too.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Someone's in a mood.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Luna gets her books and walks toward class.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1200, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Hey! Saw your comment about Lost Cause.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Oh, hi!", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Finally someone who understands how good that book is.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "RIGHT?? Nobody I know has even read it.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "The ending was actually insane.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Don't even get me started.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "So what about you? Tell me about yourself.", "_sender": 1, "_speakerName": "Alex" }
+    ], "_options": [
+      { "text": "Safe: Keep it about the books.", "nextNode": 1201, "messagesToSend": [{ "_content": "I'd rather just talk about the books for now.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Safe" },
+      { "text": "Neutral: Say you're a book nerd.", "nextNode": 1202, "messagesToSend": [{ "_content": "I'm pretty much just a book nerd haha.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Neutral" },
+      { "text": "Risky: Share school, routine and location.", "nextNode": 1203, "messagesToSend": [{ "_content": "I go to Rainfall School and live nearby. I walk there every day, so my routine is pretty predictable.", "_sender": 0, "_speakerName": "Luna" }], "eventToPublish": "Choice2_Risky" }
+    ] },
+    { "_id": 1201, "_nextNode": 1210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Fair enough. Lost Cause theories it is.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Okay, then who do you think the masked character really is?", "_sender": 1, "_speakerName": "Alex" }
+    ] },
+    { "_id": 1202, "_nextNode": 1210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Same. Books, games and music are basically my entire personality.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "What do you usually do after school?", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Mostly read, play games and waste too much time online.", "_sender": 0, "_speakerName": "Luna" }
+    ] },
+    { "_id": 1203, "_nextNode": 1210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Rainfall School? Maybe we live close to each other haha.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "What time do you usually leave, and do you always walk home?", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Usually at the same time every day. I pretty much take the same route too.", "_sender": 0, "_speakerName": "Luna" }
+    ] },
+    { "_id": 1210, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_AlexEveningComplete", "_options": [], "_dialogues": [
+      { "_content": "You know, you're actually really fun to talk to.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "HAHAHA, thanks. You're not that bad either.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "We should definitely talk more.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "Luna smiles at her phone. For once, she feels like she has found someone who shares her interests.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1220, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_Evening_End", "_options": [], "_dialogues": [
+      { "_content": "Heyyy! I saw you joined the Lost Cause community. You seem cool!", "_sender": 1, "_speakerName": "Jamie" },
+      { "_content": "Hi! Thanks haha.", "_sender": 0, "_speakerName": "Luna" }
+    ] },
+
+    { "_id": 1300, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D2_Morning_End", "_options": [], "_dialogues": [
+      { "_content": "GOOOOOD MORNING.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "It's wayyyy too early for this HAHAHA.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Someone's grumpy today.", "_sender": 1, "_speakerName": "Alex" },
+      { "_content": "I literally just woke up.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Have fun at school, nerd.", "_sender": 1, "_speakerName": "Alex" }
+    ] },
+    { "_id": 1400, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Oh, look. It's our favourite little bookworm.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Did you see what she posted yesterday?", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "Imagine actually being that embarrassing.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Do you even have friends?", "_sender": 1, "_speakerName": "Sophie" }
+    ], "_options": [
+      { "text": "Safe: Could you just leave me alone?", "nextNode": 1401, "messagesToSend": [], "eventToPublish": "Choice3_Safe" },
+      { "text": "Neutral: Ignore them and quietly get your books.", "nextNode": 1402, "messagesToSend": [], "eventToPublish": "Choice3_Neutral" },
+      { "text": "Risky: At least I don't spend all day obsessing over other people.", "nextNode": 1403, "messagesToSend": [], "eventToPublish": "Choice3_Risky" }
+    ] },
+    { "_id": 1401, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Could you just leave me alone?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Aw, did we hurt your feelings?", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Relax. We're just joking.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "The girls keep laughing and whispering as Luna gets her books and enters the classroom.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1402, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Luna ignores them and quietly gets her books.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "See? She can't even answer.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "So embarrassing.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Their whispering follows Luna as she enters the classroom.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1403, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "At least I don't spend all day obsessing over other people.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Wow. Touchy.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Looks like we hit a nerve.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "They keep taunting her, but Luna takes her books and enters the classroom.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 1500, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "HEYYYYY.", "_sender": 1, "_speakerName": "Jamie" },
+      { "_content": "I noticed you don't post much. You should! Your profile is cute.", "_sender": 1, "_speakerName": "Jamie" },
+      { "_content": "Girl, you need to get out there. People need to know you exist.", "_sender": 1, "_speakerName": "Jamie" },
+      { "_content": "You should post something. I'll even share it!", "_sender": 1, "_speakerName": "Jamie" }
+    ], "_options": [
+      { "text": "Safe: Post about a favourite book.", "nextNode": 1501, "messagesToSend": [], "eventToPublish": "Choice4_Safe" },
+      { "text": "Neutral: Post a selfie without details.", "nextNode": 1502, "messagesToSend": [], "eventToPublish": "Choice4_Neutral" },
+      { "text": "Risky: Show uniform and location.", "nextNode": 1503, "messagesToSend": [], "eventToPublish": "Choice4_Risky" }
+    ] },
+    { "_id": 1501, "_nextNode": 1510, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "[Luna posts a picture of her favourite book.]", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "A little boring, but I'll share it anyway!", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1502, "_nextNode": 1510, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "[Luna posts a selfie without identifying information.]", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "You look amazing! Sharing it now.", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1503, "_nextNode": 1510, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "[Luna posts a selfie with her school uniform and location visible.]", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "This is perfect. Everyone will see it!", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1510, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "[A screenshot of Luna's post appears with the caption: Imagine actually thinking this looks good.]", "_sender": 1, "_speakerName": "Connect" },
+      { "_content": "Emma and Sophie have liked and commented on it.", "_sender": 1, "_speakerName": "Connect" },
+      { "_content": "You've got to be kidding me...", "_sender": 0, "_speakerName": "Luna" }
+    ], "_options": [
+      { "text": "Safe: Save evidence, report it and seek help.", "nextNode": 1511, "messagesToSend": [], "eventToPublish": "Choice5_Safe" },
+      { "text": "Neutral: Delete the original and log off.", "nextNode": 1512, "messagesToSend": [], "eventToPublish": "Choice5_Neutral" },
+      { "text": "Risky: Comment back and argue.", "nextNode": 1513, "messagesToSend": [], "eventToPublish": "Choice5_Risky" }
+    ] },
+    { "_id": 1511, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D2_Jamie_End", "_options": [], "_dialogues": [
+      { "_content": "Luna saves screenshots and reports the post.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "OMG I saw what happened. Maybe you should post something better.", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1512, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D2_Jamie_End", "_options": [], "_dialogues": [
+      { "_content": "Luna deletes her original post, but the screenshot remains online.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "OMG I saw what happened. Maybe you should post something better.", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1513, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D2_Jamie_End", "_options": [], "_dialogues": [
+      { "_content": "The argument attracts more attention and more people begin commenting.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "OMG I saw what happened. Maybe you should post something better.", "_sender": 1, "_speakerName": "Jamie" }
+    ] },
+    { "_id": 1600, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D2_NoahTeaser_End", "_options": [], "_dialogues": [
+      { "_content": "Hey, I saw your profile. You seem interesting.", "_sender": 1, "_speakerName": "Noah" }
+    ] },
+
+    { "_id": 1700, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_Morning_End", "_options": [], "_dialogues": [
+      { "_content": "Morning :)", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Hey.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "How are you?", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Pretty tired. School is exhausting.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I get that. You can always talk to me.", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Noah is friendly and seems genuinely interested in Luna.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "They begin talking about music, hobbies and everyday life.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1800, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Luna arrives at school. Emma and Sophie are talking about the picture that was shared online.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Did you see how many people commented?", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "HAHAHA, she's actually famous now.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "Can you stop?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Relax, it's just a joke.", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Luna walks away.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 1850, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_Lunch_End", "_options": [], "_dialogues": [
+      { "_content": "You okay? You seemed quiet yesterday.", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "During lunch, Luna checks her phone and is surprised that Noah remembers.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 1900, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Can I ask you something?", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Sure?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "How old are you?", "_sender": 1, "_speakerName": "Noah" }
+    ], "_options": [
+      { "text": "Safe: I'd rather not share personal information.", "nextNode": 1901, "messagesToSend": [], "eventToPublish": "Choice6_Safe" },
+      { "text": "Neutral: Why do you ask?", "nextNode": 1902, "messagesToSend": [], "eventToPublish": "Choice6_Neutral" },
+      { "text": "Risky: Tell Noah her age and other personal details.", "nextNode": 1903, "messagesToSend": [], "eventToPublish": "Choice6_Risky" }
+    ] },
+    { "_id": 1901, "_nextNode": 1904, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "I'd rather not share personal information.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Okay, I understand.", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Although Noah accepts her answer, he soon returns to asking personal questions.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1902, "_nextNode": 1904, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Why do you ask?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Just curious. What do you like doing?", "_sender": 1, "_speakerName": "Noah" }
+    ] },
+    { "_id": 1903, "_nextNode": 1904, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna tells Noah her age and shares other details about her personal life.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Cool, we're around the same age.", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Now that he knows Luna's age, Noah continues asking about her personal life.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1904, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Do you have a picture of yourself?", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Why?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I just want to know who I'm talking to. I'll send one too.", "_sender": 1, "_speakerName": "Noah" }
+    ], "_options": [
+      { "text": "Safe: Refuse, block and report Noah.", "nextNode": 1905, "messagesToSend": [], "eventToPublish": "Choice7_Safe" },
+      { "text": "Neutral: Send a normal selfie.", "nextNode": 1906, "messagesToSend": [], "eventToPublish": "Choice7_Neutral" },
+      { "text": "Risky: Send a flirty or revealing selfie.", "nextNode": 1907, "messagesToSend": [], "eventToPublish": "Choice7_Risky" }
+    ] },
+    { "_id": 1905, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_NoahPhoto_End", "_options": [], "_dialogues": [
+      { "_content": "Luna refuses, blocks Noah and reports the account. She does not send a picture.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Noah cannot continue contacting her through that account.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1906, "_nextNode": 1910, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna sends a normal selfie.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Cute :)", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "Noah does not send a picture back.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1907, "_nextNode": 1910, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna sends a flirty selfie.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Wow, you're really pretty.", "_sender": 1, "_speakerName": "Noah" },
+      { "_content": "He continues complimenting her before suddenly stopping his replies.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 1910, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Later that evening, Luna receives a notification.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Look who I found.", "_sender": 1, "_speakerName": "Post" },
+      { "_content": "Someone has posted her picture on another account without her permission. Luna recognises it immediately.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "WHAT??", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Did you post this?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Noah does not answer.", "_sender": 1, "_speakerName": "Narration" }
+    ], "_options": [
+      { "text": "Safe: Save evidence, report, block and tell a trusted adult.", "nextNode": 1911, "messagesToSend": [], "eventToPublish": "Choice8_Safe" },
+      { "text": "Neutral: Block Noah and close the app without telling anyone.", "nextNode": 1912, "messagesToSend": [], "eventToPublish": "Choice8_Neutral" },
+      { "text": "Risky: Ignore the post and hope it disappears.", "nextNode": 1913, "messagesToSend": [], "eventToPublish": "Choice8_Risky" }
+    ] },
+    { "_id": 1911, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_NoahPhoto_End", "_options": [], "_dialogues": [
+      { "_content": "Luna saves the evidence, reports the post, blocks Noah and tells a trusted adult.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She begins taking steps to get help.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1912, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_NoahPhoto_End", "_options": [], "_dialogues": [
+      { "_content": "Luna blocks Noah and closes the app without telling anyone.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She avoids further contact but is left dealing with the situation alone.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 1913, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_NoahPhoto_End", "_options": [], "_dialogues": [
+      { "_content": "Luna ignores the post and hopes it disappears.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The post remains online and Luna does not know who has seen it.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 1950, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D3_Noah_End", "_options": [], "_dialogues": [
+      { "_content": "Hey Luna. I think I've seen you around.", "_sender": 1, "_speakerName": "Unknown" },
+      { "_content": "Before going to sleep, Luna realises the message request came from an unfamiliar account.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 2000, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_Morning_End", "_options": [], "_dialogues": [
+      { "_content": "You go to Rainfall School, right?", "_sender": 1, "_speakerName": "Unknown" },
+      { "_content": "Luna wakes up feeling uncomfortable after what happened with Noah. When she checks her phone, Connect is full of notifications about the picture.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The unknown account has sent another message. Luna freezes when she realises it knows her school.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Who is this?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Don't worry, I just know some people there.", "_sender": 1, "_speakerName": "Unknown" },
+      { "_content": "The account has very little information and no profile picture.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2100, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Luna arrives at school. Emma and Sophie are still talking about the picture.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Look who's here.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "How's your little internet fame going?", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "Luna ignores them and goes to class.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 2150, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_ClassMessage_End", "_options": [], "_dialogues": [
+      { "_content": "Saw you walking home yesterday.", "_sender": 1, "_speakerName": "Unknown" },
+      { "_content": "During class, Luna sees the notification and becomes uncomfortable.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2200, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "You take the same route every day?", "_sender": 1, "_speakerName": "Unknown" },
+      { "_content": "Why are you asking?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Just curious. I think I've seen you.", "_sender": 1, "_speakerName": "Unknown" }
+    ], "_options": [
+      { "text": "Safe: Block, report and tell someone about the messages.", "nextNode": 2201, "messagesToSend": [], "eventToPublish": "Choice9_Safe" },
+      { "text": "Neutral: Ask how the account knows before deciding what to do.", "nextNode": 2202, "messagesToSend": [], "eventToPublish": "Choice9_Neutral" },
+      { "text": "Risky: Share where she walks and when she gets home.", "nextNode": 2203, "messagesToSend": [], "eventToPublish": "Choice9_Risky" }
+    ] },
+    { "_id": 2201, "_nextNode": 2210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna saves the messages as evidence, blocks and reports the account, and tells someone about what happened.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The conversation stops.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2202, "_nextNode": 2210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna asks how the account knows her before deciding what to do.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The account claims it has seen her around school and continues asking questions.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2203, "_nextNode": 2210, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna reveals where she usually walks and when she gets home.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The account now knows more about Luna's routine.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2210, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Luna opens Connect and notices how much information her profile contains. She begins looking through her old posts.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Some posts reveal details about her school, neighbourhood and daily activities.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Wait... I've actually posted all of this?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "She realises someone could use that information to figure out where she spends her time.", "_sender": 1, "_speakerName": "Narration" }
+    ], "_options": [
+      { "text": "Safe: Go private, remove identifying information and review location permissions.", "nextNode": 2211, "messagesToSend": [], "eventToPublish": "Choice10_Safe" },
+      { "text": "Neutral: Delete a few posts that reveal personal information.", "nextNode": 2212, "messagesToSend": [], "eventToPublish": "Choice10_Neutral" },
+      { "text": "Risky: Leave everything public.", "nextNode": 2213, "messagesToSend": [], "eventToPublish": "Choice10_Risky" }
+    ] },
+    { "_id": 2211, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_Unknown_End", "_options": [], "_dialogues": [
+      { "_content": "Luna makes her account private, removes identifying information and reviews location permissions.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She reduces the information strangers can access.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2212, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_Unknown_End", "_options": [], "_dialogues": [
+      { "_content": "Luna deletes a few posts that reveal personal information, but some information remains visible.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2213, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_Unknown_End", "_options": [], "_dialogues": [
+      { "_content": "Luna leaves everything public because she does not think anyone would use it against her.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Her account continues to expose personal details.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2300, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D4_RileyIntro_End", "_options": [], "_dialogues": [
+      { "_content": "Hey, I saw some of the stuff happening on Connect. Are you okay?", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "I don't even know anymore.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "That sounds rough. Do you want to talk?", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Luna hesitates but decides to reply.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "I think you should be careful about what people post. Not everything online is what it seems.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Luna decides to talk more with Riley tomorrow.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 2400, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D5_Morning_End", "_options": [], "_dialogues": [
+      { "_content": "Good morning! How are you feeling today?", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Honestly? Not great.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I understand. I've seen what's been happening, and I wanted to check on you.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Everything has just gotten so complicated.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Sometimes you just need someone to listen.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Riley seems understanding and gives Luna space to explain what has happened.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2500, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "SchoolEncounterComplete", "_options": [], "_dialogues": [
+      { "_content": "Luna arrives at school. Emma and Sophie are standing by the lockers.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Well, well, well. Still using that app?", "_sender": 1, "_speakerName": "Emma" },
+      { "_content": "I'd delete it if I were you.", "_sender": 1, "_speakerName": "Sophie" },
+      { "_content": "Luna walks past them.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "For the first time, she considers telling someone at school what has been happening.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2600, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Can I tell you something?", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "After school, Luna opens Connect.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Sure?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I've been seeing a lot of posts about you. Some people are saying you sent those pictures to everyone.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "WHAT? I didn't!", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I know. But people are sharing things without checking if they're true.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Riley sends Luna a screenshot of a post discussing the situation.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Apparently Luna sends pictures to random people online.", "_sender": 1, "_speakerName": "Post" },
+      { "_content": "Luna feels sick reading it.", "_sender": 1, "_speakerName": "Narration" }
+    ], "_options": [
+      { "text": "Safe: Save evidence, report the misinformation and speak to someone she trusts.", "nextNode": 2601, "messagesToSend": [], "eventToPublish": "Choice11_Safe" },
+      { "text": "Neutral: Ignore the post and stop checking the comments.", "nextNode": 2602, "messagesToSend": [], "eventToPublish": "Choice11_Neutral" },
+      { "text": "Risky: Publicly confront everyone sharing the post.", "nextNode": 2603, "messagesToSend": [], "eventToPublish": "Choice11_Risky" }
+    ] },
+    { "_id": 2601, "_nextNode": 2610, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna saves evidence, reports the misinformation and begins preparing to ask someone she trusts for help.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2602, "_nextNode": 2610, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna stops checking the comments, but she does not address the misinformation.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2603, "_nextNode": 2610, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna publicly confronts everyone sharing the post. More people join the argument and the post receives additional attention.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2610, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "You know, I think I can help you.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "How?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "I know someone who can get those posts removed.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Really?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Yeah. But I need you to send me the screenshots and some information about your account.", "_sender": 1, "_speakerName": "Riley" },
+      { "_content": "Luna pauses. Something about the request feels familiar.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She remembers how Alex asked about her school, how Jamie encouraged her to post, how Noah asked for pictures and how the unknown account knew where she went.", "_sender": 1, "_speakerName": "Narration" }
+    ], "_options": [
+      { "text": "Safe: Refuse to share more information and seek help from a trusted adult.", "nextNode": 2611, "messagesToSend": [], "eventToPublish": "Choice12_Safe" },
+      { "text": "Neutral: Ask exactly who will receive the information and why.", "nextNode": 2612, "messagesToSend": [], "eventToPublish": "Choice12_Neutral" },
+      { "text": "Risky: Send the screenshots and account details without checking.", "nextNode": 2613, "messagesToSend": [], "eventToPublish": "Choice12_Risky" }
+    ] },
+    { "_id": 2611, "_nextNode": 2620, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna refuses to share more information. Riley accepts the decision or stops responding.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna decides she needs help from someone she knows offline.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2612, "_nextNode": 2620, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna asks Riley to explain exactly who will receive the information and why.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Riley explains the situation, but Luna still needs to decide whether the information is safe to share.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2613, "_nextNode": 2620, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": false, "_eventOnEnd": "", "_options": [], "_dialogues": [
+      { "_content": "Luna sends the screenshots and account details without checking.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She has no control over where the information might end up.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2620, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": true, "_isEndNode": false, "_eventOnEnd": "", "_dialogues": [
+      { "_content": "Luna sits in her bedroom with her phone in her hands and scrolls through the messages from the past five days.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She remembers how excited she was when she first downloaded Connect. At first, it was a place to talk about books and meet people with similar interests.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Now she has experienced bullying, manipulation, unwanted attention and the consequences of sharing personal information.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Her previous decisions have shaped which evidence she saved, which accounts she blocked and whether she has someone she trusts to support her.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna opens her messages and decides what to do next.", "_sender": 1, "_speakerName": "Narration" }
+    ], "_options": [
+      { "text": "Safe: Reach out, preserve evidence, report harmful accounts and secure her privacy.", "nextNode": 2621, "messagesToSend": [], "eventToPublish": "Choice13_Safe" },
+      { "text": "Neutral: Take a break and avoid strangers, but keep everything to herself.", "nextNode": 2622, "messagesToSend": [], "eventToPublish": "Choice13_Neutral" },
+      { "text": "Risky: Continue using Connect normally and hope it goes away.", "nextNode": 2623, "messagesToSend": [], "eventToPublish": "Choice13_Risky" }
+    ] },
+    { "_id": 2621, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "ResolveEnding_Safe", "_options": [], "_dialogues": [
+      { "_content": "Luna chooses to reach out to a trusted adult, preserve evidence, report harmful accounts and take control of her online privacy.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2622, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "ResolveEnding_Neutral", "_options": [], "_dialogues": [
+      { "_content": "Luna takes a break from Connect and avoids interacting with strangers, but keeps everything to herself.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2623, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "ResolveEnding_Risky", "_options": [], "_dialogues": [
+      { "_content": "Luna continues using Connect as normal and hopes the situation eventually goes away.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 2700, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "Campaign_Completed", "_options": [], "_dialogues": [
+      { "_content": "GOOD ENDING", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna decides to speak to someone she trusts. She shows them the messages, screenshots and posts.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Together, they report the harmful content and take steps to protect her accounts.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The situation does not magically disappear, but Luna understands that she does not have to deal with everything alone.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She opens Connect one final time and reviews her privacy settings.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "I guess I have to be more careful about what I share.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "Luna closes her laptop.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "FADE OUT.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2701, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "Campaign_Completed", "_options": [], "_dialogues": [
+      { "_content": "NEUTRAL ENDING", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna decides to take a break from Connect. She blocks some accounts and deletes a few posts, but never tells anyone what happened.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "The situation becomes quieter, but she is still unsure about what information is out there.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She puts her phone away.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Maybe it'll all just go away.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "FADE OUT.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+    { "_id": 2702, "_nextNode": -1, "_dialogueType": 1, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "Campaign_Completed", "_options": [], "_dialogues": [
+      { "_content": "BAD ENDING", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna continues using Connect without addressing what has happened.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "More people share the posts, and strangers continue contacting her.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "She becomes increasingly isolated and stops talking about what is happening at school and online.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Her phone keeps buzzing.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "SFX: BZZZZ. BZZZZ. BZZZZ.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Luna turns it face down.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "I wish I had never downloaded this.", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "FADE OUT.", "_sender": 1, "_speakerName": "Narration" }
+    ] },
+
+    { "_id": 2800, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_StudentConnectOverheard", "_options": [], "_dialogues": [
+      { "_content": "During lunch, Luna notices a group of students talking about a new social media platform called Connect.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Have you downloaded Connect yet?", "_sender": 1, "_speakerName": "Student 1" },
+      { "_content": "Yeah! It's so much better than the other apps.", "_sender": 1, "_speakerName": "Student 2" },
+      { "_content": "You can post pictures, follow people, message anyone and join communities.", "_sender": 1, "_speakerName": "Student 1" }
+    ] },
+    { "_id": 2801, "_nextNode": -1, "_dialogueType": 0, "_hasOptions": false, "_isEndNode": true, "_eventOnEnd": "D1_StudentConnectConversationComplete", "_options": [], "_dialogues": [
+      { "_content": "What's Connect?", "_sender": 0, "_speakerName": "Luna" },
+      { "_content": "You seriously haven't heard of it? Everyone's using it.", "_sender": 1, "_speakerName": "Student 2" },
+      { "_content": "One of the students shows Luna the app.", "_sender": 1, "_speakerName": "Narration" },
+      { "_content": "Look, you can make your own profile and find people with the same interests.", "_sender": 1, "_speakerName": "Student 1" }
+    ] }
   ]
 }

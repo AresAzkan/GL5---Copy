@@ -3,6 +3,7 @@ using UnityEngine;
 using System.Collections.Generic;
 using UnityEngine.InputSystem;
 using UnityEngine.UI;
+using System;
 
 public class DialogueManager : MonoBehaviour
 {
@@ -27,6 +28,11 @@ public class DialogueManager : MonoBehaviour
 
     private Button _dialogueAdvanceButton;
     private CanvasGroup _dialogueCanvasGroup;
+    private bool _standaloneMonologueActive;
+    private Action _standaloneMonologueClosed;
+    private Canvas _dialogueCanvas;
+    private bool _previousOverrideSorting;
+    private int _previousSortingOrder;
 
     void Awake()
     {
@@ -85,23 +91,80 @@ public class DialogueManager : MonoBehaviour
         }
 
         _currentDialogueIndex = 0;
-        _currentDialogues = null;
+        _currentDialogues = currentNode.Dialogues();
+        _currentContact = MessagesManager.Instance.GetCurrentContactName();
+        _isEndNode = currentNode.IsEndNode();
         _dialogueBox.SetActive(true);
         InputManager.Instance.DisableMovementMap();
-        
-        if (currentNode.HasOptions())
+
+        // Choice nodes can also contain an introductory exchange. Keep the
+        // choice panel hidden until every line has been shown, then EndDialogue
+        // will reveal the options. This also prevents stale text from the
+        // previous conversation remaining behind the choice buttons.
+        MessagesManager.Instance.GetOptionsChanger().ActiveDecisionsPanel(false);
+        ContinueDialogue();
+    }
+
+    /// <summary>
+    /// Shows a one-line inner monologue in the real dialogue box without
+    /// changing the current narrative contact or forcing the phone to close.
+    /// E or a click on the dialogue box dismisses it.
+    /// </summary>
+    public bool ShowInnerMonologue(string text, Action onClosed = null)
+    {
+        return ShowStandaloneDialogue("[Luna]", text, onClosed);
+    }
+
+    /// <summary>
+    /// Shows a narration line in the real dialogue box while preserving the
+    /// active phone conversation. E or a click dismisses it, then the caller
+    /// can resume the remaining phone messages.
+    /// </summary>
+    public bool ShowNarration(string text, Action onClosed = null)
+    {
+        return ShowStandaloneDialogue("Narration", text, onClosed);
+    }
+
+    /// <summary>
+    /// Shows a self-contained world dialogue without changing the active
+    /// narrative contact. Intended for ambient NPCs whose lines must not
+    /// advance or interrupt a story conversation.
+    /// </summary>
+    public bool ShowStandaloneLine(string speaker, string text, Action onClosed = null)
+    {
+        return ShowStandaloneDialogue(speaker, text, onClosed);
+    }
+
+    private bool ShowStandaloneDialogue(string speaker, string text, Action onClosed)
+    {
+        if (_dialogueBox == null || string.IsNullOrWhiteSpace(text) ||
+            _dialogueBox.activeSelf || _standaloneMonologueActive)
         {
-            MessagesManager.Instance.GetOptionsChanger().SetCurrentNode(currentNode);
-            MessagesManager.Instance.GetOptionsChanger().ActiveDecisionsPanel(true);
+            return false;
         }
-        else
+
+        _standaloneMonologueActive = true;
+        _standaloneMonologueClosed = onClosed;
+        _currentDialogueIndex = 0;
+        _currentDialogues = null;
+        _isEndNode = false;
+
+        _characterNameText.text = speaker;
+        _dialogueText.text = text;
+        SetChoiceMode(false);
+
+        _dialogueCanvas = _dialogueBox.GetComponentInParent<Canvas>();
+        if (_dialogueCanvas != null)
         {
-            MessagesManager.Instance.GetOptionsChanger().ActiveDecisionsPanel(false);
-            _currentDialogues = currentNode.Dialogues();
-            _currentContact = MessagesManager.Instance.GetCurrentContactName();
-            _isEndNode = currentNode.IsEndNode();
-            ContinueDialogue();
+            _previousOverrideSorting = _dialogueCanvas.overrideSorting;
+            _previousSortingOrder = _dialogueCanvas.sortingOrder;
+            _dialogueCanvas.overrideSorting = true;
+            _dialogueCanvas.sortingOrder = 100;
         }
+
+        _dialogueBox.SetActive(true);
+        InputManager.Instance.DisableMovementMap();
+        return true;
     }
 
 
@@ -112,18 +175,16 @@ public class DialogueManager : MonoBehaviour
             return;
         }
 
+        if (_standaloneMonologueActive)
+        {
+            EndStandaloneMonologue();
+            return;
+        }
+
         NarrativeNode currentNode = MessagesManager.Instance.GetCurrentContactNarrativeNode();
         if (currentNode == null)
         {
             RecoverFromInvalidDialogue("Cannot continue dialogue because the current contact has no valid narrative node.");
-            return;
-        }
-
-        // A choice node is advanced only by choosing one of its buttons. The node's
-        // regular nextNode is intentionally -1, so treating Continue as EndDialogue
-        // here would corrupt the contact's narrative state.
-        if (currentNode.HasOptions())
-        {
             return;
         }
 
@@ -160,6 +221,25 @@ public class DialogueManager : MonoBehaviour
         _characterNameText.text = speaker;
         _dialogueText.text = currentMessage.Content();
         _currentDialogueIndex++;
+    }
+
+    private void EndStandaloneMonologue()
+    {
+        _standaloneMonologueActive = false;
+        _dialogueBox.SetActive(false);
+        _currentDialogueIndex = 0;
+        _currentDialogues = null;
+
+        if (_dialogueCanvas != null)
+        {
+            _dialogueCanvas.overrideSorting = _previousOverrideSorting;
+            _dialogueCanvas.sortingOrder = _previousSortingOrder;
+            _dialogueCanvas = null;
+        }
+
+        Action closed = _standaloneMonologueClosed;
+        _standaloneMonologueClosed = null;
+        closed?.Invoke();
     }
 
     private void EndDialogue()
@@ -278,6 +358,8 @@ public class DialogueManager : MonoBehaviour
         _currentDialogueIndex = 0;
         _currentDialogues = null;
         _isEndNode = false;
+        _standaloneMonologueActive = false;
+        _standaloneMonologueClosed = null;
         SetChoiceMode(false);
 
         if (_dialogueBox != null)

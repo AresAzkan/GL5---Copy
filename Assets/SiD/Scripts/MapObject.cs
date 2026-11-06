@@ -17,6 +17,9 @@ public class MapObject : IInteractable
 
     [Header("Direct Travel")]
 
+    [Tooltip("Open the shared travel map instead of loading a scene immediately.")]
+    [SerializeField] private bool _openTravelMap;
+
     [Tooltip("Optional: Load this scene directly instead of opening the travel map.")]
     [SerializeField] private string _directScene;
 
@@ -78,7 +81,7 @@ public class MapObject : IInteractable
             : transform.parent.GetComponentInParent<MapObject>();
 
         if (parentDoor != null && parentDoor != this &&
-            !string.IsNullOrEmpty(parentDoor._directScene))
+            (parentDoor._openTravelMap || !string.IsNullOrEmpty(parentDoor._directScene)))
         {
             parentDoor.Interact();
             return;
@@ -98,6 +101,12 @@ public class MapObject : IInteractable
             {
                 playerState.ChangeState(PlayerState.Idle);
             }
+            return;
+        }
+
+        if (_openTravelMap)
+        {
+            UIManager.Instance.ShowMap();
             return;
         }
 

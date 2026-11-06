@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections;
 using System.Collections.Generic;
 using System;
 using System.Linq;
@@ -9,10 +10,18 @@ public class ObjectivesManager : MonoBehaviour
 
     [SerializeField] private string _objectivesFileName = "objectives.json";
 
+    [Header("Day 1 - Scene 1")]
+    [Tooltip("How long Luna can explore her bedroom before the objective changes to Go to school.")]
+    [SerializeField, Min(0f)] private float _day1BedroomExploreDuration = 30f;
+
+    private const int Day1BedroomExploreObjectiveId = 0;
+    private const string Day1BedroomExploreCompleteEvent = "D1_ExploreTimerComplete";
+
     [SerializeField]
     private Dictionary<int, Objective> _objectives = new Dictionary<int, Objective>();
     private Objective _currentObjective;
     private int _currentProgress = 0;
+    private Coroutine _day1BedroomExploreTimer;
 
     /// <summary>
     /// Triggered when the current objective changes or its progress updates.
@@ -79,6 +88,43 @@ public class ObjectivesManager : MonoBehaviour
 
             
         OnObjectiveUpdated?.Invoke(_currentObjective, _currentProgress);
+        UpdateTimedObjective();
+    }
+
+    private void UpdateTimedObjective()
+    {
+        if (_day1BedroomExploreTimer != null)
+        {
+            StopCoroutine(_day1BedroomExploreTimer);
+            _day1BedroomExploreTimer = null;
+        }
+
+        if (_currentObjective != null && _currentObjective.Id() == Day1BedroomExploreObjectiveId)
+        {
+            _day1BedroomExploreTimer = StartCoroutine(Day1BedroomExploreRoutine());
+        }
+    }
+
+    private IEnumerator Day1BedroomExploreRoutine()
+    {
+        // Give every Start method one frame to begin the Scene 1 opening transition.
+        yield return null;
+
+        if (TransitionManager.Instance != null)
+        {
+            yield return new WaitUntil(() => !TransitionManager.Instance.IsTransitioning);
+        }
+
+        yield return new WaitForSeconds(_day1BedroomExploreDuration);
+
+        _day1BedroomExploreTimer = null;
+
+        if (_currentObjective != null &&
+            _currentObjective.Id() == Day1BedroomExploreObjectiveId &&
+            EventBus.Instance != null)
+        {
+            EventBus.Instance.Publish(Day1BedroomExploreCompleteEvent);
+        }
     }
 
     private void OnObjectiveProgressed()

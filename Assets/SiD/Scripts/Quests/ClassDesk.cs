@@ -5,10 +5,8 @@ public class ClassDesk : IInteractable
     [Header("Legacy Test Scene")]
     [SerializeField] private SchoolQuestManager schoolQuest;
 
-    private const string Day1EncounterFinished = "Day1_LockerEncounterEnd";
-    private const string Day2EncounterFinished = "Day2_ClassroomEncounterEnd";
-    private const string Day1ClassFinished = "Day1_ClassFinished";
-    private const string Day2ClassFinished = "Day2_ClassFinished";
+    private const string EncounterFinished = "SchoolEncounterComplete";
+    private const string ClassFinished = "SchoolClassFinished";
 
     protected override void Start()
     {
@@ -27,8 +25,7 @@ public class ClassDesk : IInteractable
 
         if (EventBus.Instance != null)
         {
-            EventBus.Instance.Subscribe(Day1EncounterFinished, EnableDesk);
-            EventBus.Instance.Subscribe(Day2EncounterFinished, EnableDesk);
+            EventBus.Instance.Subscribe(EncounterFinished, EnableDesk);
         }
     }
 
@@ -36,8 +33,7 @@ public class ClassDesk : IInteractable
     {
         if (EventBus.Instance != null)
         {
-            EventBus.Instance.Unsubscribe(Day1EncounterFinished, EnableDesk);
-            EventBus.Instance.Unsubscribe(Day2EncounterFinished, EnableDesk);
+            EventBus.Instance.Unsubscribe(EncounterFinished, EnableDesk);
         }
     }
 
@@ -55,9 +51,7 @@ public class ClassDesk : IInteractable
         }
 
         _canInteract = false;
-        string completionEvent = DayManager.Instance != null && DayManager.Instance.GetCurrentDay() >= 2
-            ? Day2ClassFinished
-            : Day1ClassFinished;
+        string completionEvent = ClassFinished;
 
         if (TransitionManager.Instance != null)
         {

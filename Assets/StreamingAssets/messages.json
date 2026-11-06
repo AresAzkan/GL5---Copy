@@ -1,10 +1,37 @@
 {
   "contactPhoneMessages": [
+    {
+      "_contactName": "Mom",
+      "_messages": [
+        { "_content": "How are you feeling, sweetheart?", "_sender": 1, "_speakerName": "Mom", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 20, "minute": 1 } },
+        { "_content": "I'm okay, just tired.", "_sender": 0, "_speakerName": "Luna", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 20, "minute": 3 } },
+        { "_content": "All right. Let me know if you need anything.", "_sender": 1, "_speakerName": "Mom", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 20, "minute": 5 } }
+      ]
+    },
+    {
+      "_contactName": "Dad",
+      "_messages": [
+        { "_content": "You got home safe?", "_sender": 1, "_speakerName": "Dad", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 18, "minute": 55 } },
+        { "_content": "Yes, Dad. I'm in my room.", "_sender": 0, "_speakerName": "Luna", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 18, "minute": 57 } },
+        { "_content": "Good. Be careful, and watch out for boys.", "_sender": 1, "_speakerName": "Dad", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 18, "minute": 59 } },
+        { "_content": "Dad, please.", "_sender": 0, "_speakerName": "Luna", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 19, "minute": 0 } }
+      ]
+    },
+    {
+      "_contactName": "Maya",
+      "_messages": [
+        { "_content": "Important question: black nails or pink?", "_sender": 1, "_speakerName": "Maya", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 22, "minute": 6 } },
+        { "_content": "Black. Obviously.", "_sender": 0, "_speakerName": "Luna", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 22, "minute": 8 } },
+        { "_content": "Knew it. That's why you're my bestie.", "_sender": 1, "_speakerName": "Maya", "_timestamp": { "day": 30, "month": 9, "year": 2026, "hour": 22, "minute": 10 } }
+      ]
+    },
+    { "_contactName": "Student Group", "_messages": [] },
+    { "_contactName": "Connect", "_messages": [] },
     { "_contactName": "Alex", "_messages": [] },
-    { "_contactName": "Noah", "_messages": [] },
     { "_contactName": "Emma", "_messages": [] },
-    { "_contactName": "Mom", "_messages": [] },
-    { "_contactName": "Teacher", "_messages": [] },
-    { "_contactName": "Bob", "_messages": [] }
+    { "_contactName": "Jamie", "_messages": [] },
+    { "_contactName": "Noah", "_messages": [] },
+    { "_contactName": "Unknown", "_messages": [] },
+    { "_contactName": "Riley", "_messages": [] }
   ]
 }

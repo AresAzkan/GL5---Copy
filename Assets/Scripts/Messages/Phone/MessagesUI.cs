@@ -21,6 +21,7 @@ public class MessagesUI : MonoBehaviour
 
     [Header("Message Images")]
     [SerializeField] private Sprite lunaFlirtSelfie;
+    [SerializeField] private Sprite lunaNormalSelfie;
 
     [Header("Scroll")]
     [SerializeField] private ScrollRect messagesScrollRect;
@@ -39,6 +40,7 @@ public class MessagesUI : MonoBehaviour
     private bool _isAnimating = false;
 
     private const string LunaFlirtSelfieToken = "[Luna sends a flirty selfie.]";
+    private const string LunaNormalSelfieToken = "[Luna sends a normal selfie.]";
 
     public bool IsAnimating => _isAnimating || _pendingMessages.Count > 0;
 
@@ -475,19 +477,13 @@ public class MessagesUI : MonoBehaviour
 
     private bool TryInstantiateImageMessage(Message message, float availableWidth)
     {
-        if (message == null || !string.Equals(message.Content(), LunaFlirtSelfieToken, System.StringComparison.Ordinal))
+        if (!TryGetMessageSprite(message, out Sprite messageSprite))
         {
-            return false;
-        }
-
-        if (lunaFlirtSelfie == null)
-        {
-            Debug.LogWarning("Luna's flirty selfie sprite is not assigned. Showing the narrative placeholder instead.");
             return false;
         }
 
         float imageWidth = availableWidth * 0.8f;
-        float nativeAspectRatio = lunaFlirtSelfie.rect.width / lunaFlirtSelfie.rect.height;
+        float nativeAspectRatio = messageSprite.rect.width / messageSprite.rect.height;
 
         GameObject rowObject = new GameObject("ImageMessage", typeof(RectTransform), typeof(LayoutElement));
         rowObject.layer = messagesContainer.gameObject.layer;
@@ -520,9 +516,12 @@ public class MessagesUI : MonoBehaviour
         imageObject.transform.SetParent(rowRect, false);
 
         Image image = imageObject.GetComponent<Image>();
-        image.sprite = lunaFlirtSelfie;
+        image.sprite = messageSprite;
         image.type = Image.Type.Simple;
-        image.preserveAspect = true;
+        // The RectTransform is intentionally counter-scaled against the phone's
+        // non-uniform parent transforms. Preserve Aspect would fit the sprite back
+        // into its uncorrected local ratio and reintroduce the visible distortion.
+        image.preserveAspect = false;
         image.color = Color.white;
         image.raycastTarget = false;
 
@@ -540,7 +539,90 @@ public class MessagesUI : MonoBehaviour
         aspectFitter.aspectMode = AspectRatioFitter.AspectMode.WidthControlsHeight;
         aspectFitter.aspectRatio = compensatedAspectRatio;
 
+        StartCoroutine(CorrectImageAspectAfterLayout(imageRect, rowRect, rowLayout, aspectFitter, nativeAspectRatio));
+
         return true;
+    }
+
+    private bool TryGetMessageSprite(Message message, out Sprite messageSprite)
+    {
+        messageSprite = null;
+        if (message == null) return false;
+
+        string content = message.Content();
+        if (string.Equals(content, LunaFlirtSelfieToken, System.StringComparison.Ordinal))
+        {
+            messageSprite = lunaFlirtSelfie;
+        }
+        else if (string.Equals(content, LunaNormalSelfieToken, System.StringComparison.Ordinal))
+        {
+            messageSprite = lunaNormalSelfie;
+        }
+        else
+        {
+            return false;
+        }
+
+        if (messageSprite == null)
+        {
+            Debug.LogWarning($"The image for message '{content}' is not assigned. Showing the narrative placeholder instead.");
+            return false;
+        }
+
+        return true;
+    }
+
+    private IEnumerator CorrectImageAspectAfterLayout(
+        RectTransform imageRect,
+        RectTransform rowRect,
+        LayoutElement rowLayout,
+        AspectRatioFitter aspectFitter,
+        float targetAspectRatio)
+    {
+        yield return null;
+        Canvas.ForceUpdateCanvases();
+
+        if (imageRect == null || rowRect == null || rowLayout == null)
+        {
+            yield break;
+        }
+
+        Vector3[] corners = new Vector3[4];
+        imageRect.GetWorldCorners(corners);
+        float displayedWidth = Vector3.Distance(corners[1], corners[2]);
+        float displayedHeight = Vector3.Distance(corners[0], corners[1]);
+        if (displayedWidth <= 0.01f || displayedHeight <= 0.01f)
+        {
+            yield break;
+        }
+
+        float displayedAspectRatio = displayedWidth / displayedHeight;
+        if (Mathf.Abs(displayedAspectRatio - targetAspectRatio) <= 0.005f)
+        {
+            yield break;
+        }
+
+        float correctedLocalHeight = imageRect.rect.height * (displayedAspectRatio / targetAspectRatio);
+        if (aspectFitter != null)
+        {
+            aspectFitter.enabled = false;
+        }
+
+        Vector2 imageSize = imageRect.sizeDelta;
+        imageSize.y = correctedLocalHeight;
+        imageRect.sizeDelta = imageSize;
+
+        Vector2 rowSize = rowRect.sizeDelta;
+        rowSize.y = correctedLocalHeight;
+        rowRect.sizeDelta = rowSize;
+        rowLayout.minHeight = correctedLocalHeight;
+        rowLayout.preferredHeight = correctedLocalHeight;
+
+        Canvas.ForceUpdateCanvases();
+        if (messagesContainer is RectTransform messagesRect)
+        {
+            LayoutRebuilder.ForceRebuildLayoutImmediate(messagesRect);
+        }
     }
 
     private void CleanUpConflictingComponents(GameObject messageGO)

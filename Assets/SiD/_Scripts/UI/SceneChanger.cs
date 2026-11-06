@@ -5,11 +5,20 @@ using UnityEngine.UI;
 public class SceneChanger : MonoBehaviour
 {
     private Transform _panel;
+    private bool _subscribedToExit;
 
 
     private void Start()
     {
-        EventBus.Instance.Subscribe("Exit",SetupButtons);
+        // The main menu intentionally starts without the persistent gameplay
+        // managers that are created in Home. Keep its scene controller usable
+        // when no EventBus exists yet.
+        if (EventBus.Instance != null)
+        {
+            EventBus.Instance.Subscribe("Exit", SetupButtons);
+            _subscribedToExit = true;
+        }
+
         SetupButtons();
     }
     private void OnEnable()
@@ -20,6 +29,14 @@ public class SceneChanger : MonoBehaviour
     private void OnDisable()
     {
         SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
+    private void OnDestroy()
+    {
+        if (_subscribedToExit && EventBus.Instance != null)
+        {
+            EventBus.Instance.Unsubscribe("Exit", SetupButtons);
+        }
     }
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
     {

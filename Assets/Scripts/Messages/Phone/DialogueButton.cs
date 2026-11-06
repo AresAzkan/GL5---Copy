@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System;
 
 public class DialogueButton : MonoBehaviour
 {
@@ -8,6 +9,7 @@ public class DialogueButton : MonoBehaviour
     private float _timer = 0f;
     private Image _image;
     private TextMeshProUGUI _textMesh;
+    private bool _narrationDialogueActive;
 
     void Awake()
     {
@@ -34,6 +36,13 @@ public class DialogueButton : MonoBehaviour
     {
         if (MessagesManager.Instance == null)
             return;
+
+        if (_narrationDialogueActive)
+        {
+            SetVisualsActive(false);
+            _timer = 0f;
+            return;
+        }
 
         Contact currentContact = MessagesManager.Instance.GetCurrentContact();
         if (currentContact == null)
@@ -62,6 +71,14 @@ public class DialogueButton : MonoBehaviour
                     _button.gameObject.SetActive(true);
                     
                     Message nextMsg = currentNode.Dialogues()[currentContact.CurrentMessageIndex()];
+                    if (IsNarration(nextMsg))
+                    {
+                        SetVisualsActive(false);
+                        _timer = 0f;
+                        ShowNarration(currentContact, nextMsg);
+                        return;
+                    }
+
                     if (nextMsg.Sender() == Sender.NPC)
                     {
                         // It's the NPC's turn. Hide the button visually and wait 1 second.
@@ -99,6 +116,41 @@ public class DialogueButton : MonoBehaviour
             SetVisualsActive(false);
             _button.gameObject.SetActive(false);
         }
+    }
+
+    private void ShowNarration(Contact currentContact, Message narration)
+    {
+        if (DialogueManager.Instance == null)
+        {
+            Debug.LogWarning("[DialogueButton] Cannot show narration because DialogueManager is unavailable.");
+            return;
+        }
+
+        _narrationDialogueActive = true;
+        bool opened = DialogueManager.Instance.ShowNarration(
+            narration.Content(),
+            () =>
+            {
+                _narrationDialogueActive = false;
+                _timer = 0f;
+            });
+
+        if (!opened)
+        {
+            _narrationDialogueActive = false;
+            return;
+        }
+
+        // Narration is consumed by the dialogue window, not the phone history.
+        // Advancing here lets the normal Update flow continue with any line
+        // that follows after the player dismisses the narration.
+        currentContact.SetCurrentMessageIndex(currentContact.CurrentMessageIndex() + 1);
+    }
+
+    private static bool IsNarration(Message message)
+    {
+        return message != null &&
+               string.Equals(message.SpeakerName(), "Narration", StringComparison.OrdinalIgnoreCase);
     }
 
     private void OnDialogueButtonPressed()
@@ -144,8 +196,14 @@ public class DialogueButton : MonoBehaviour
                 EventBus.Instance.Publish(currentNode.EventOnEnd());
             }
             
-            currentContact.SetNarrativeNode(currentNode.NextNode());
+            int nextNodeId = currentNode.NextNode();
+            currentContact.SetNarrativeNode(nextNodeId);
             currentContact.SetCurrentMessageIndex(0);
+
+            if (nextNodeId < 0)
+            {
+                return;
+            }
             
             NarrativeNode next = MessagesManager.Instance.GetCurrentContactNarrativeNode();
             if (next != null)

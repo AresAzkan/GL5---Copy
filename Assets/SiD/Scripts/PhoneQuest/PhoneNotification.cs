@@ -32,7 +32,7 @@ public class PhoneNotification : MonoBehaviour
         // Play phone buzz
         if (audioSource != null && buzzSound != null)
         {
-            audioSource.PlayOneShot(buzzSound);
+            audioSource.PlayOneShot(buzzSound, GameManager.GetSavedSfxVolume());
         }
     }
 }
